@@ -1,6 +1,6 @@
 {
   "name": "@baadal-sdk/utils",
-  "version": "0.1.0",
+  "version": "0.12.0",
   "description": "Common utils for developers",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
