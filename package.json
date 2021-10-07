@@ -70,7 +70,9 @@
     "webpack-node-externals": "3.0.0"
   },
   "dependencies": {
-    "core-js": "3.18.0"
+    "core-js": "3.18.0",
+    "js-base64": "^3.7.2",
+    "sha-1": "^1.0.0"
   },
   "peerDependencies": {
     "react": ">=16.8.6",
