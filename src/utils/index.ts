@@ -52,3 +52,18 @@ export const arrayToMap = <T = any>(arr: T[] | null, key: string) => {
   });
   return map.size ? map : null;
 };
+
+/**
+ * Convert an array into an array of chunks of array
+ * @param arr a given array
+ * @param chunkSize maximum number of items in a chunk
+ * @returns array of chunks of the given array
+ */
+export const chunkifyArray = <T = any>(arr: T[], chunkSize: number) => {
+  const chunkedItems = [];
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    const chunk = arr.slice(i, i + chunkSize);
+    chunkedItems.push(chunk);
+  }
+  return chunkedItems;
+};
