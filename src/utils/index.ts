@@ -34,16 +34,22 @@ export const sha1Hash = (data: string) => {
 
 /**
  * Create a Map from a given Array based on some field
- * Note that the items of the array should be of type `object`
+ * Note that the items of the array should generally be of type `object`
+ * so that the `key` property exists on the object item. However, if the
+ * `key` parameter is not provided, then the items of the array must be of
+ * a primitive data type (string or number) which will be treated as key.
  * @param arr given Array to be converted to Map
- * @param key a string field from Array items
+ * @param key [optional] a string field from Array items
  * @returns a map created from the array items
  */
-export const arrayToMap = <T = any>(arr: T[] | null, key: string) => {
+export const arrayToMap = <T = any>(arr: T[] | null, key?: string) => {
   if (!arr || !Array.isArray(arr) || !arr.length) return null;
+  if (!key && typeof arr[0] !== 'string' && typeof arr[0] !== 'number') return null;
   const map = new Map<string, T>();
   arr.forEach((item: any) => {
-    if (typeof item === 'object') {
+    if (!key) {
+      map.set(`${item}`, true as unknown as T);
+    } else if (typeof item === 'object') {
       const itemKey = item[key];
       if (itemKey && typeof itemKey === 'string') {
         map.set(itemKey, item);
