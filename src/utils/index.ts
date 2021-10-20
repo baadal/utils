@@ -43,9 +43,12 @@ export const sha1Hash = (data: string) => {
  * @returns a map created from the array items
  */
 export const arrayToMap = <T = any>(arr: T[] | null, key?: string) => {
-  if (!arr || !Array.isArray(arr) || !arr.length) return null;
-  if (!key && typeof arr[0] !== 'string' && typeof arr[0] !== 'number') return null;
+  if (!arr || !Array.isArray(arr)) return null;
+
   const map = new Map<string, T>();
+  if (!arr.length) return map;
+
+  if (!key && typeof arr[0] !== 'string' && typeof arr[0] !== 'number') return null;
   arr.forEach((item: any) => {
     if (!key) {
       map.set(`${item}`, true as unknown as T);
